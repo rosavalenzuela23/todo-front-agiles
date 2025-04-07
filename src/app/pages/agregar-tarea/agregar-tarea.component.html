@@ -1,0 +1,54 @@
+<!-- hay un header arriba -->
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            Agregar tarea
+        </div>
+    </div>
+
+    <form (submit)="botonGuardarClick($event)" [formGroup]="datosTarea">
+        <div class="row">
+            <div class="col">
+                <label for="inputNombreTarea" class="form-label">
+                    Titulo de la tarea
+                </label>
+                <input type="text" class="form-control" id="inputNombreTarea" formControlName="titulo">
+            </div>
+            <div class="col">
+                <label for="inputCategoriaTarea" class="form-label">
+                    Lista/Categoria
+                </label>
+                <input type="text" class="form-control" id="inputCategoriaTarea" formControlName="nombreLista">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label class="form-label" for="textAreaDescripcion">Descripción de la tarea</label>
+                <textarea id="textAreaDescripcion" class="form-control" formControlName="descripcion"></textarea>
+            </div>
+            <div class="col">
+                <div>
+                    <label for="inputFechaTermino" class="form-label">
+                        Fecha de termino
+                    </label>
+                    <input type="date" id="inputFechaTermino" class="form-control" formControlName="fechaTermino">
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col d-flex justify-content-center align-items-center">
+                <button class="btn btn-outline-secondary me-2" type="button" (click)="regresar()">
+                    Cancelar
+                </button>
+                <button class="btn btn-primary ms-2" type="submit">
+                    {{ nombreBotonGuardar }}
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+</div>

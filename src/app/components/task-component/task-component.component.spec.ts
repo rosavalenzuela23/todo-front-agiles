@@ -20,4 +20,9 @@ describe('TaskComponentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("el metodo debe de regresar un dos", () => {
+    throw new Error();
+  })
+
 });
