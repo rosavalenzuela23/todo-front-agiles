@@ -9,16 +9,20 @@
             </div>
         </div>
         <div class="col-2">
-            <span class="btn">
+            <button class="btn" (mouseenter)="changeIcon(true)" (mouseleave)="changeIcon(false)">
                 Terminar
-                <i class="bi bi-pencil-square"></i>
-            </span>
+                @if (isDivVisble) {
+                <i class="bi bi-check-square-fill"></i>
+                } @else {
+                <i class="bi bi-check-square"></i>
+                }
+            </button>
         </div>
         <div class="col-2">
-            <span class="btn">
+            <button class="btn" (click)="editarTarea()">
                 Editar
-                <i class="bi-alarm"></i>
-            </span>
+                <i class="bi bi-pencil-square"></i>
+            </button>
         </div>
     </div>
 </div>

@@ -1,3 +1,13 @@
 <div class="container-fluid">
-    <app-task-component [task]="tareaPrueba" />
+
+    <a routerLink="/agregar" class="btn btn-primary">
+        Agregar tarea
+    </a>
+
+    @for (tarea of tareasAMostrar; track tarea.id) {
+    <div class="my-3">   
+        <app-task-component [task]="tarea" (editarTareaEvento)="editarTarea(tarea)" />
+    </div>
+    }
+
 </div>
