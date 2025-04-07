@@ -1,3 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
 @import url('../node_modules/bootstrap-icons/font/bootstrap-icons.min.css');
+
+.btn-primary {
+    background-color: #6a0d83;
+    border: 0px;
+}
+
+.btn-primary:hover {
+    background-color: #b516e1;
+    border: 0px;
+}
+
+.btn-outline-secondary {
+    border-color: #eeaf61;
+}
+
+.btn-outline-secondary:active {
+    border-color: #eeaf61;
+    background-color: #eeaf61;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #eeaf61;
+    border-color: #eeaf61;
+}
+
