@@ -68,7 +68,7 @@ export class AgregarTareaComponent {
       this.guardarTarea(evento);
     }
 
-    this.router.navigate(['/mistareas']);
+    this.router.navigate(['/dashboard']);
   }
 
   async guardarTarea(evento: Event) {
