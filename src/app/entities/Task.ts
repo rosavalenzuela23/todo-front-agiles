@@ -5,7 +5,6 @@ export enum TaskEstado {
     TERMINADA
 }
 
-@IdAutoIncrement
 export default class Task {
     constructor(
         public titulo?: string,
