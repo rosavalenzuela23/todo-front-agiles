@@ -62,6 +62,10 @@ export class TareasService {
     localStorage.setItem('tarea-editar', JSON.stringify(task));
   }
 
+  eliminarTarea(taskId: number) {
+    this.tareas = this.tareas.filter(t => t.id != taskId);
+  }
+
   async obtenerTareaEditar(): Promise<Task | null> {
     const jsonString = localStorage.getItem('tarea-editar');
     if (!jsonString) {

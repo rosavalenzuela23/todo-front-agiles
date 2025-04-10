@@ -42,6 +42,13 @@ export class AgregarTareaComponent {
     }
   }
 
+  eliminarTarea() {
+    if (!this.tareaAEditar) throw new Error("No se puede eliminar una tarea no existente");
+    this.tareaService.eliminarTarea(this.tareaAEditar.id!);
+    alert("La tarea se elimino con exito!");
+    this.router.navigate(['/dashboard']);
+  }
+
   private setDatosTareaEnFormGroup() {
     this.datosTarea.controls.titulo.setValue(this.tareaAEditar?.titulo || '');
     this.datosTarea.controls.descripcion.setValue(
