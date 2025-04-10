@@ -18,7 +18,13 @@ export class TareasService {
   async guardarTarea(task: Task) {
     const ids: number[] = [];
     this.tareas.forEach(t => ids.push(t.id!));
-    const ultimoId = Math.max(...ids);
+    let ultimoId = Math.max(...ids);
+
+    //En caso de que sea la primera que se agrega
+    if (ultimoId == Infinity || ultimoId == -Infinity) {
+      ultimoId = 1;
+    }
+
     task.id = ultimoId + 1;
 
     this.tareas.push(task);
