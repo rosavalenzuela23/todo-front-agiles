@@ -3,10 +3,13 @@ import { NotFound404Component } from './pages/not-found404/not-found404.componen
 import { MistareasComponent } from './pages/mistareas/mistareas.component';
 import { AgregarTareaComponent } from './pages/agregar-tarea/agregar-tarea.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import {RegistrarusuarioComponent} from './pages/registrarusuario/registrarusuario.component';
 
 export const routes: Routes = [
     { path: "dashboard", component: DashboardComponent },
     { path: "agregar", component: AgregarTareaComponent },
     { path: "editar", component: AgregarTareaComponent },
+    { path: "mistareas", component: MistareasComponent },
+    {path: "registrar", component: RegistrarusuarioComponent},
     { path: "**", component: NotFound404Component }
 ];
