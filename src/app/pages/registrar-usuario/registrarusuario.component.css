@@ -1,0 +1,57 @@
+/* Envoltorio general del formulario */
+.form-wrapper {
+    background-color: #eeaf61;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.form-title {
+    text-align: center;
+    color: #6a0d83;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* Formulario en sí */
+.form-container label {
+    margin-top: 15px;
+    color: #6a0d83;
+    font-weight: 500;
+}
+
+.inputStyle {
+    background-color: #fff;
+    border: 2px solid #fb9062;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 5px;
+    transition: border-color 0.3s;
+}
+
+.inputStyle:focus {
+    outline: none;
+    border-color: #ce4993;
+    box-shadow: 0 0 5px #ce4993;
+}
+
+/* Botón */
+.submitButton {
+    background-color: #ce4993;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    margin-top: 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+    background-color: #ee5d6c;
+    cursor: pointer;
+}
