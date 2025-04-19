@@ -8,8 +8,23 @@
         </div>
         <div class="col">
 
-            @for (tarea of tareas; track $index) {
-                <app-task-component [task]="tarea" (editarTareaEvento)="editarTarea(tarea)" />
+            @for (tarea of tareasAbiertas; track tarea.id) {
+                <app-task-component 
+                [task]="tarea" 
+                (editarTareaEvento)="editarTarea(tarea)"
+                (cambiarEstadoEvento)="terminarTarea(tarea)" />
+            }
+
+            @if (tareasTerminadas.length != 0) {
+                <hr>
+            }
+
+            @for (tarea of tareasTerminadas; track tarea.id) {
+                <app-task-component
+                [task]="tarea"
+                [terminada]="true"
+                (cambiarEstadoEvento)="abrirTarea(tarea)"
+                />
             }
 
         </div>
