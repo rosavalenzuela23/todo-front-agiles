@@ -3,8 +3,9 @@ import { NotFound404Component } from './pages/not-found404/not-found404.componen
 import { MistareasComponent } from './pages/mistareas/mistareas.component';
 import { AgregarTareaComponent } from './pages/agregar-tarea/agregar-tarea.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { RegistrarusuarioComponent } from './pages/registrarusuario/registrarusuario.component';
 import { ListasComponent } from './pages/listas/listas.component';
+import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciarsesion.component';
+import { RegistrarusuarioComponent } from './pages/registrar-usuario/registrarusuario.component';
 
 export const routes: Routes = [
     { path: "dashboard", component: DashboardComponent },
