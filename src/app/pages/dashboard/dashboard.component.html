@@ -1,5 +1,4 @@
 <app-header />
-<app-boton-agregar-tarea />
 
 <div class="container-fluid">
     <div class="row">
@@ -7,6 +6,7 @@
             <app-sidebar />
         </div>
         <div class="col">
+            <app-boton-agregar-tarea />
 
             @for (tarea of tareasAbiertas; track tarea.id) {
                 <app-task-component 
