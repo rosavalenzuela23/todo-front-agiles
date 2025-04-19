@@ -55,7 +55,8 @@ export class TareasService {
     } else {
       refTarea.estado = TaskEstado.ABIERTA;
     }
-    
+
+    await this.crearRespaldo();
   }
 
   guardarTareaAEditar(task: Task) {

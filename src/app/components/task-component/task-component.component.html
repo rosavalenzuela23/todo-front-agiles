@@ -9,21 +9,40 @@
                 {{ task.descripcion }}
             </div>
         </div>
-        <div class="col-2">
-            <button class="btn" (mouseenter)="changeIcon(true)" (mouseleave)="changeIcon(false)">
-                Terminar
-                @if (isDivVisble) {
-                <i class="bi bi-check-square-fill"></i>
-                } @else {
-                <i class="bi bi-check-square"></i>
-                }
-            </button>
-        </div>
+
+        @if (!terminada) {
         <div class="col-2">
             <button class="btn" (click)="editarTarea()">
                 Editar
                 <i class="bi bi-pencil-square"></i>
             </button>
         </div>
+        <div class="col-2">
+            <button class="btn" (mouseenter)="changeIcon(true)" (mouseleave)="changeIcon(false)"
+                (click)="cambiarEstado()">
+                Terminar
+                @if (isDivVisble) {
+                <i class="bi bi-bookmark-check-fill"></i>
+                } @else {
+                <i class="bi bi-bookmark-check"></i>
+                }
+            </button>
+        </div>
+        } @else {
+        <div class="col-2">
+            <button class="btn" (click)="cambiarEstado()">
+                Abrir
+                <i class="bi bi-escape"></i>
+            </button>
+        </div>
+        <div class="col-2">
+            <button class="btn">
+                Borrar
+                <i class="bi bi-trash-fill"></i>
+            </button>
+        </div>
+        }
+
+
     </div>
 </div>

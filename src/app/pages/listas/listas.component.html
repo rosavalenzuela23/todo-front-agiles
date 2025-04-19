@@ -1,0 +1,56 @@
+<app-header />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2">
+            <app-sidebar />
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-end my-5 mx-3">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarLista">
+                    Agregar categoría
+                </button>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                
+                <select class="form-select" name="listaTareas" id="listaTareas">
+                    <option selected>Seleccione una opción valida</option>
+                    @for (nombreLista of nombresListas; track $index) {
+                        <option [value]="nombreLista">{{ nombreLista }}</option>
+                    }
+                </select>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- el modal alv -->
+<form class="modal" tabindex="-1" id="modalAgregarLista" (submit)="guardarNombreLista($event)">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nombre de la lista</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="nomrbeListaInput">
+                        Nombre de la lista
+                    </label>
+                    <input 
+                    type="text" 
+                    id="nomrbeListaInput" 
+                    class="form-control" 
+                    placeholder="Lista ...."
+                    [formControl]="nombreLista">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Agregar lista</button>
+            </div>
+        </div>
+    </div>
+</form>
