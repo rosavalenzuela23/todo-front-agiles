@@ -15,4 +15,12 @@ export class ServicioUsuario {
         return usuario;
     }
 
+
+    async iniciarSesion(usuario: Usuario): Promise<any> {
+
+      console.log(usuario);
+
+      return usuario;
+    }
+
 }

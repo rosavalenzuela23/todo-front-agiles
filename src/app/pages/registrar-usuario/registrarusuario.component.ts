@@ -3,6 +3,7 @@ import {ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular
 import Usuario from '../../entities/Usuario';
 import { inject } from "@angular/core";
 import { ServicioUsuario } from '../../services/ServicioUsuario';
+import {customEmailValidator} from '../../utilities/Validators';
 
 @Component({
   selector: 'app-registrarusuario',
@@ -21,7 +22,7 @@ export class RegistrarusuarioComponent {
     nombre: new FormControl(undefined, Validators.required),
     usuario: new FormControl(undefined, Validators.required),
     password: new FormControl(undefined, Validators.required),
-    email: new FormControl(undefined, Validators.required),
+    email: new FormControl(undefined, [Validators.required, Validators.email]),
     fechaNacimiento: new FormControl(undefined, Validators.required)
   })
 

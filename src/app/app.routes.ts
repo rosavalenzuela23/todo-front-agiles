@@ -11,7 +11,8 @@ export const routes: Routes = [
     { path: "agregar", component: AgregarTareaComponent },
     { path: "editar", component: AgregarTareaComponent },
     { path: "mistareas", component: MistareasComponent },
-    { path: "registrar", component: RegistrarusuarioComponent },
     { path: "listas", component: ListasComponent },
+    { path: "login", component: IniciarSesionComponent },
+    { path: "registrar", component: RegistrarusuarioComponent },
     { path: "**", component: NotFound404Component }
 ];
