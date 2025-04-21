@@ -21,7 +21,7 @@
                 </label>
 
                 <select class="form-select" formControlName="nombreLista">
-                    <option selected></option>
+                    <option selected value="">Sin lista</option>
                     @for (lista of listas; track $index) {
                         <option [value]="lista">{{ lista }}</option>
                     }
