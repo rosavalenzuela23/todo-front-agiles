@@ -19,7 +19,14 @@
                 <label for="inputCategoriaTarea" class="form-label">
                     Lista/Categoria
                 </label>
-                <input type="text" class="form-control" id="inputCategoriaTarea" formControlName="nombreLista">
+
+                <select class="form-select" formControlName="nombreLista">
+                    <option selected></option>
+                    @for (lista of listas; track $index) {
+                        <option [value]="lista">{{ lista }}</option>
+                    }
+                </select>
+
             </div>
         </div>
 

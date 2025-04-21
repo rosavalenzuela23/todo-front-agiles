@@ -9,6 +9,7 @@ import {
 import Task from '../../entities/Task';
 import { TareasService } from '../../services/tareas.service';
 import { Router } from '@angular/router';
+import { ListasService } from '../../services/listas.service';
 
 @Component({
   selector: 'app-agregar-tarea',
@@ -26,10 +27,16 @@ export class AgregarTareaComponent {
 
   tareaAEditar: Task | null = null;
 
+  listas: string[] = [];
+
   nombreBotonGuardar: string = 'Guardar tarea';
   esEdicion: boolean = false;
 
-  constructor(private router: Router, private tareaService: TareasService) {}
+  constructor(
+    private router: Router,
+    private tareaService: TareasService,
+    private listaService: ListasService
+  ) {}
 
   async ngOnInit() {
     const tareaAEditar = await this.tareaService.obtenerTareaEditar();
@@ -40,6 +47,9 @@ export class AgregarTareaComponent {
       this.nombreBotonGuardar = 'Confirmar cambios';
       this.setDatosTareaEnFormGroup();
     }
+
+    const refListas = await this.listaService.obtenerListas();
+    this.listas = refListas;
   }
 
   eliminarTarea() {
