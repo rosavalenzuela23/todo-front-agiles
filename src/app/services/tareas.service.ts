@@ -31,6 +31,10 @@ export class TareasService {
     await this.crearRespaldo();
   }
 
+  async obtenerTareaConLista(nombreLista: string) {
+    return this.tareas.filter(t => t.nombreLista === nombreLista);
+  }
+
   async actualizarTarea(task: Task) {
     const tarea = this.tareas.find(
       t => t.id === task.id
@@ -76,6 +80,17 @@ export class TareasService {
     return JSON.parse(jsonString) as Task;
   }
 
+  async actualizarListaDeTareasConLista(nombreAntiguo: string, nombreNuevo: string) {
+    
+    this.tareas.forEach( tarea => {
+      if (tarea.nombreLista === nombreAntiguo ) {
+        tarea.nombreLista = nombreNuevo;
+      }
+    })
+
+    await this.crearRespaldo();
+  }
+  
   async obtenerTodasLasTareas(): Promise<Task[]> {
     return this.tareas;
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TareasService } from './tareas.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,9 @@ export class ListasService {
 
   listas: string[];
 
-  constructor() {
+  constructor(
+    private tareaService: TareasService
+  ) {
     const stringListas = localStorage.getItem('listas');
 
     if (stringListas === null) {
@@ -24,6 +27,23 @@ export class ListasService {
     this.listas.push(nombreLista);
     //Tenemos que crear un respaldo?
     await this.crearRespaldo();
+  }
+
+  async actualizarNombreTarea(nombreNuevo: string, nombreAntiguo: string) {
+    //actualizar tareas
+    await this.tareaService
+    .actualizarListaDeTareasConLista(nombreAntiguo, nombreNuevo);
+    //actualizar nombre
+    const index = this.listas.lastIndexOf(nombreAntiguo);
+    this.listas[index] = nombreNuevo;
+    await this.crearRespaldo();
+  }
+
+  async eliminarNombreLista(nombreLista: string) {
+    const tareas = await this.tareaService.obtenerTareaConLista(nombreLista);
+    tareas.forEach( t=> t.nombreLista = "");
+
+    this.listas = this.listas.filter(lista => lista != nombreLista);
   }
 
   async crearRespaldo() {

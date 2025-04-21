@@ -9,23 +9,65 @@
             <div class="d-flex justify-content-end my-5 mx-3">
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgregarLista">
                     Agregar categoría
+                    <i class="bi bi-plus-lg"></i>
                 </button>
             </div>
-            <div class="d-flex justify-content-center align-items-center">
-                
-                <select class="form-select" name="listaTareas" id="listaTareas">
-                    <option selected>Seleccione una opción valida</option>
-                    @for (nombreLista of nombresListas; track $index) {
-                        <option [value]="nombreLista">{{ nombreLista }}</option>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-10">
+                        <select class="form-select" name="listaTareas" id="listaTareas"
+                            (change)="cambiarListaActual($event)">
+                            <option selected>Seleccione una opción valida</option>
+                            @for (nombreLista of nombresListas; track $index) {
+                            <option [value]="nombreLista">{{ nombreLista }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#modalEditarLista">
+                            Editar
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+
+                    @if (listaTareas.length != 0) {
+                    <h5>Tareas abiertas</h5>
+                    <hr>
+                    } @else {
+                    <h5>
+                        No hay ninguna tarea abierta disponible por el momento
+                    </h5>
                     }
-                </select>
+
+                    @for (tarea of listaTareas; track tarea.id) {
+                    <app-task-component [task]="tarea" (cambiarEstadoEvento)="cambiarEstado(tarea)"
+                        (editarTareaEvento)="editarTarea(tarea)" />
+                    }
+                </div>
+
+                <div class="row mt-5">
+
+                    @if (listaTareasTerminadas.length != 0) {
+                    <h5>Tareas terminadas</h5>
+                    <hr>
+                    }
+
+                    @for (tarea of listaTareasTerminadas; track tarea.id) {
+                    <app-task-component [task]="tarea" [terminada]="true"
+                        (cambiarEstadoEvento)="cambiarEstado(tarea)" />
+                    }
+                </div>
 
             </div>
         </div>
     </div>
 </div>
 
-<!-- el modal alv -->
+<!-- el modal para agregar listas -->
 <form class="modal" tabindex="-1" id="modalAgregarLista" (submit)="guardarNombreLista($event)">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -38,18 +80,54 @@
                     <label for="nomrbeListaInput">
                         Nombre de la lista
                     </label>
-                    <input 
-                    type="text" 
-                    id="nomrbeListaInput" 
-                    class="form-control" 
-                    placeholder="Lista ...."
-                    [formControl]="nombreLista">
+                    <input type="text" id="nomrbeListaInput" class="form-control" placeholder="Lista ...."
+                        [formControl]="nombreLista">
                 </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Agregar lista</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- el modal para editar las listas -->
+<!-- la neta no se como hacer que un mismo modal sirva para cosas diferentes -->
+<!-- solo criticas constructivas :'v  -->
+<form class="modal" tabindex="-1" id="modalEditarLista" (submit)="editarLista($event)">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar nombre categoría</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <label for="nombreListaAntiguo">
+                        Nombre antiguo: 
+                    </label>
+                    
+                    <input 
+                    type="text" 
+                    id="nombreListaAntiguo" 
+                    class="form-control" 
+                    [value]="listaActual" 
+                    disabled>
+
+                    <label for="nombreListaNuevo">
+                        Nuevo nombre de la categoría
+                    </label>
+                    <input type="text" id="nombreListaNuevo" class="form-control" placeholder="Lista ...."
+                        [formControl]="nombreLista" [value]="nombreLista">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Actualizar categoría</button>
             </div>
         </div>
     </div>
