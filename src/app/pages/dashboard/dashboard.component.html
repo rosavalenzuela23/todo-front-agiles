@@ -8,7 +8,7 @@
         <div class="col">
             <app-boton-agregar-tarea />
 
-            @for (tarea of tareasAbiertas; track tarea.id) {
+            @for (tarea of tareasAbiertas; track tarea.idPropio) {
                 <app-task-component 
                 [task]="tarea" 
                 (editarTareaEvento)="editarTarea(tarea)"
@@ -19,7 +19,7 @@
                 <hr>
             }
 
-            @for (tarea of tareasTerminadas; track tarea.id) {
+            @for (tarea of tareasTerminadas; track tarea.idPropio) {
                 <app-task-component
                 [task]="tarea"
                 [terminada]="true"

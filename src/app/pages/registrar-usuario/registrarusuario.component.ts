@@ -40,7 +40,7 @@ export class RegistrarusuarioComponent {
     }
     
     this.usuario.nombre = this.userForm.get("nombre")?.value!;
-    this.usuario.usuario = this.userForm.get("usuario")?.value!;
+    this.usuario.username = this.userForm.get("usuario")?.value!;
     this.usuario.password = this.userForm.get("password")?.value!;
     this.usuario.email = this.userForm.get("email")?.value!;
     this.usuario.fechaNacimiento = this.userForm.get("fechaNacimiento")?.value!;

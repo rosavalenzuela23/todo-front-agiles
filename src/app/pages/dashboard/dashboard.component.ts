@@ -6,6 +6,7 @@ import Task, { TaskEstado } from '../../entities/Task';
 import { TareasService } from '../../services/tareas.service';
 import { TaskComponentComponent } from "../../components/task-component/task-component.component";
 import { Router } from '@angular/router';
+import { ServicioUsuario } from '../../services/ServicioUsuario';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,10 +21,19 @@ export class DashboardComponent {
 
   constructor(
     private tareaService: TareasService,
+    private usuarioService: ServicioUsuario,
     private router: Router
   ) { }
 
   async ngOnInit() {
+
+    const usuario = this.usuarioService.getCurrentUser();
+
+    if (usuario == null) {
+      this.router.navigate(['']);
+      return;
+    }
+
     await this.actualizarVista();
   }
 
@@ -39,13 +49,13 @@ export class DashboardComponent {
   }
 
   async terminarTarea(tarea: Task) {
-    this.tareaService.cambiarEstadoTarea(tarea.id!);
+    this.tareaService.cambiarEstadoTarea(tarea.idPropio!);
     //fire a sound effect
     await this.actualizarVista();
   }
 
   async abrirTarea(tarea: Task) {
-    this.tareaService.cambiarEstadoTarea(tarea.id!);
+    this.tareaService.cambiarEstadoTarea(tarea.idPropio!);
     await this.actualizarVista();    
   }
 

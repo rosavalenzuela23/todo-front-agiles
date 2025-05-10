@@ -71,7 +71,7 @@ export class PaginaPrincipalComponent {
 
     const usuario = new Usuario();
 
-    usuario.usuario = this.registerForm.get("usuario")?.value!;
+    usuario.username = this.registerForm.get("usuario")?.value!;
     usuario.password = this.registerForm.get("password")?.value!;
     usuario.email = this.registerForm.get("email")?.value!;
 

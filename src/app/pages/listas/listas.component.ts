@@ -62,7 +62,7 @@ export class ListasComponent {
   }
 
   async cambiarEstado(tarea: Task) {
-    this.tareaService.cambiarEstadoTarea(tarea.id!);
+    this.tareaService.cambiarEstadoTarea(tarea.idPropio!);
     this.actualizarVista();
   }
 

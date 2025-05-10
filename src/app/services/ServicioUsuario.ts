@@ -26,7 +26,7 @@ export class ServicioUsuario {
     const body: registerBody = {
       email: usuario.email!,
       password: usuario.password!,
-      username: usuario.usuario!
+      username: usuario.username!
     }
 
     try {
@@ -62,6 +62,8 @@ export class ServicioUsuario {
       throw new Error("No se pudo iniciar sesión");
     }
 
+    this.currentUser = res.user;
+    this.accessToken = res.access_token;
   }
 
   getCurrentUser(): Usuario | null {

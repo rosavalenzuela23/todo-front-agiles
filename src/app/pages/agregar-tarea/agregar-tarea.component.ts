@@ -54,7 +54,7 @@ export class AgregarTareaComponent {
 
   eliminarTarea() {
     if (!this.tareaAEditar) throw new Error("No se puede eliminar una tarea no existente");
-    this.tareaService.eliminarTarea(this.tareaAEditar.id!);
+    this.tareaService.eliminarTarea(this.tareaAEditar.idPropio!);
     alert("La tarea se elimino con exito!");
     this.router.navigate(['/dashboard']);
   }
