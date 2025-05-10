@@ -38,11 +38,7 @@ export class IniciarSesionComponent {
     this.usuario.password = this.userForm.get("password")?.value!;
     this.usuario.email = this.userForm.get("email")?.value!;
    
-    const response = await this.servicioUsuario.iniciarSesion(this.usuario);
-
-    if(response){
-      alert("log in exitoso");
-    }
+    await this.servicioUsuario.iniciarSesion(this.usuario);
   }
 
 }

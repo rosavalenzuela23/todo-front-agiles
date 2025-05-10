@@ -6,8 +6,10 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ListasComponent } from './pages/listas/listas.component';
 import { IniciarSesionComponent } from './pages/iniciar-sesion/iniciarsesion.component';
 import { RegistrarusuarioComponent } from './pages/registrar-usuario/registrarusuario.component';
+import { PaginaPrincipalComponent } from './pages/pagina-principal/pagina-principal.component';
 
 export const routes: Routes = [
+    { path: "", component: PaginaPrincipalComponent },
     { path: "dashboard", component: DashboardComponent },
     { path: "agregar", component: AgregarTareaComponent },
     { path: "editar", component: AgregarTareaComponent },

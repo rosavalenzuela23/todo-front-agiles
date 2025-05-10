@@ -1,0 +1,36 @@
+
+<div class="container mt-5" id="container">
+    <div class="form-container sign-up-container">
+        <form [formGroup]="registerForm" (ngSubmit)="registrarUsuario()" >
+            <h1>Crear cuenta</h1>
+            <span>Ingrese los datos necesarios para poder registrarse a TaskitosMasterManager</span>
+            <input type="text" placeholder="Nombre de usuario" formControlName="usuario" />
+            <input type="email" placeholder="Correo electrónico" formControlName="email" />
+            <input type="password" placeholder="Contraseña" formControlName="password" />
+            <button>Registrarse</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+            <h1>Iniciar sesión</h1>
+            <span>Ingrese sus datos en los siguientes campos: </span>
+            <input type="email" placeholder="Correo electrónico" formControlName="email" />
+            <input type="password" placeholder="Contraseña" formControlName="password" />
+            <button>Iniciar Sesión</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>¡Bienvenido de vuelta!</h1>
+                <p>Para poder utilizar Taskitos, porfavor ingrese su información de inicio</p>
+                <button class="ghost" id="signIn">Iniciar sesión</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>¡Bienvenido!</h1>
+                <p>Registre su información para poder utilizar el Taskitos</p>
+                <button class="ghost" id="signUp">Registrarse</button>
+            </div>
+        </div> 
+    </div>
+</div>
