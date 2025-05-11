@@ -49,7 +49,7 @@ export class AgregarTareaComponent {
     }
 
     const refListas = await this.listaService.obtenerListas();
-    this.listas = refListas;
+    this.listas = refListas.filter((lista) => lista !== 'sin categoria');
   }
 
   eliminarTarea() {

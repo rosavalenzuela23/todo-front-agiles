@@ -82,7 +82,11 @@ export class ListasComponent {
 
   async cambiarListaActual(event: Event) {
     const elemento = event.target as HTMLSelectElement;
-    const valor = elemento.value;
+    let valor = elemento.value;
+    //Excepción cuando una tarea no tiene categoría
+    if(valor === "sin categoria") {
+      valor = "";
+    }
     this.listaActual = valor;
     await this.actualizarListasDeTareas(valor);
   }

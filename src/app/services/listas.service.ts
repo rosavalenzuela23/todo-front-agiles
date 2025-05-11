@@ -14,9 +14,16 @@ export class ListasService {
     const stringListas = localStorage.getItem('listas');
 
     if (stringListas === null) {
-      this.listas = []; //Aunque deberiamos de ir a la base de datos por las listas...
+      this.listas = ["sin categoria"]; //Aunque deberiamos de ir a la base de datos por las listas...
+      this.crearRespaldo();
     } else {
       this.listas = JSON.parse(stringListas);
+
+      if(!this.listas.includes("sin categoria")){
+        this.listas.unshift("sin categoria");
+        this.crearRespaldo();
+      }
+      
     }
 
   }
