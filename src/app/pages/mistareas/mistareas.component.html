@@ -4,7 +4,7 @@
         Agregar tarea
     </a>
 
-    @for (tarea of tareasAMostrar; track tarea.id) {
+    @for (tarea of tareasAMostrar; track tarea.idPropio) {
     <div class="my-3">   
         <app-task-component [task]="tarea" (editarTareaEvento)="editarTarea(tarea)" />
     </div>

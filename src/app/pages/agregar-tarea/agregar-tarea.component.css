@@ -1,0 +1,11 @@
+.bkn{
+    background-color: #ff4b2b;
+}
+.container-fluid {
+    max-width: 900px;
+    margin: auto;
+}
+
+textarea.form-control {
+    resize: none;
+}

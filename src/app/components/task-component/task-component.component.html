@@ -1,24 +1,31 @@
-<div class="container-fluid my-3 px-4 rounded py-2 tarea">
+<div class="container-fluid my-3 px-5 rounded  py-2 tarea">
     <div class="row d-flex align-items-center justify-content-center">
         <div class="col-8">
-            <div class="row">
-                <b>{{ task.titulo }} </b>
+            <div class="row row border-bottom pb-2 mb-2 tasktitle">
+                <div class="col-auto"><b>{{ task.titulo }}</b></div>
+                <div class="col-auto categoriaStyle">
+                    @if (task.nombreLista != ""){
+                        {{ task.nombreLista }}
+                    } @else {
+                        Sin Categoria
+                    }
+                    
+                </div>
             </div>
-            <hr>
             <div class="row">
-                {{ task.descripcion }}
+                <em>{{ task.descripcion }}</em>
             </div>
         </div>
 
         @if (!terminada) {
         <div class="col-2">
-            <button class="btn" (click)="editarTarea()">
+            <button class="btn btn-warning" (click)="editarTarea()">
                 Editar
                 <i class="bi bi-pencil-square"></i>
             </button>
         </div>
         <div class="col-2">
-            <button class="btn" (mouseenter)="changeIcon(true)" (mouseleave)="changeIcon(false)"
+            <button class="btn btn-success" (mouseenter)="changeIcon(true)" (mouseleave)="changeIcon(false)"
                 (click)="cambiarEstado()">
                 Terminar
                 @if (isDivVisble) {
@@ -30,13 +37,13 @@
         </div>
         } @else {
         <div class="col-2">
-            <button class="btn" (click)="cambiarEstado()">
+            <button class="btn btn-info" (click)="cambiarEstado()">
                 Abrir
                 <i class="bi bi-escape"></i>
             </button>
         </div>
         <div class="col-2">
-            <button class="btn">
+            <button class="btn btn-danger">
                 Borrar
                 <i class="bi bi-trash-fill"></i>
             </button>
