@@ -58,7 +58,8 @@
 
                     @for (tarea of listaTareasTerminadas; track tarea.idPropio) {
                     <app-task-component [task]="tarea" [terminada]="true"
-                        (cambiarEstadoEvento)="cambiarEstado(tarea)" />
+                        (cambiarEstadoEvento)="cambiarEstado(tarea)"
+                        (eliminarTareaEvento)="eliminarTarea(tarea)" />
                     }
                 </div>
 
@@ -107,15 +108,10 @@
                 <div>
 
                     <label for="nombreListaAntiguo">
-                        Nombre antiguo: 
+                        Nombre antiguo:
                     </label>
-                    
-                    <input 
-                    type="text" 
-                    id="nombreListaAntiguo" 
-                    class="form-control" 
-                    [value]="listaActual" 
-                    disabled>
+
+                    <input type="text" id="nombreListaAntiguo" class="form-control" [value]="listaActual" disabled>
 
                     <label for="nombreListaNuevo">
                         Nuevo nombre de la categoría

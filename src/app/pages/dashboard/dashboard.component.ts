@@ -61,11 +61,14 @@ export class DashboardComponent {
     //Obtenemos las tareas del usuario
     const tareas = await this.tareaService.obtenerTodasLasTareas();
     
+    this.tareasAbiertas = tareas.filter(t => t.estado === TaskEstado.ABIERTA);
+    this.tareasTerminadas = tareas.filter(t => t.estado === TaskEstado.TERMINADA);
+
     this.tareasCalendario = tareas.map((t: any) => {
-      const originalDate = new Date(t.endDate ?? '2025-01-01');
+      const originalDate = new Date(t.fechaTermino ?? '2025-01-01');
       const formattedDate = originalDate.toISOString().split('T')[0];
       return {
-        title: t.title ?? 'Sin título',
+        title: t.titulo ?? 'Sin título',
         date: formattedDate
       };
     });

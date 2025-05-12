@@ -19,7 +19,7 @@ export class TareasService {
     private servicioUsuario: ServicioUsuario
   ) {
     this.tareas = [];
-    const lista = localStorage.getItem('lista-tareas');
+    const lista = sessionStorage.getItem('lista-tareas');
     if (lista) {
       this.tareas = JSON.parse(lista);
     }
@@ -70,23 +70,24 @@ export class TareasService {
       refTarea.estado = TaskEstado.ABIERTA;
     }
 
-    await this.crearRespaldo();
+    this.crearRespaldo();
   }
 
   guardarTareaAEditar(task: Task) {
-    localStorage.setItem('tarea-editar', JSON.stringify(task));
+    sessionStorage.setItem('tarea-editar', JSON.stringify(task));
   }
 
   eliminarTarea(taskId: number) {
     this.tareas = this.tareas.filter(t => t.idPropio != taskId);
+    this.crearRespaldo();
   }
 
   async obtenerTareaEditar(): Promise<Task | null> {
-    const jsonString = localStorage.getItem('tarea-editar');
+    const jsonString = sessionStorage.getItem('tarea-editar');
     if (!jsonString) {
       return null;
     }
-    localStorage.removeItem('tarea-editar');
+    sessionStorage.removeItem('tarea-editar');
     return JSON.parse(jsonString) as Task;
   }
 
@@ -118,17 +119,23 @@ export class TareasService {
     }
 
     const res = await fetch(this.enpointTareas, resquestOptions);
-    if (res.status !== 200) {
+    if (res.status < 200 && res.status > 299) {
       throw new Error("Error al obtener las tareas");
     }
-    const { tasks } = await res.json();
+    const { tasks } = await res.json() || [];
     
+    this.tareas = Task.fromServerArray(tasks);
+    await this.crearRespaldoLocalStorage();
+    
+    return this.tareas;
+  }
 
-    return tasks;
+  async crearRespaldoLocalStorage() {
+    sessionStorage.setItem('lista-tareas', JSON.stringify(this.tareas));
   }
 
   async crearRespaldo() {
-
+    sessionStorage.setItem('lista-tareas', JSON.stringify(this.tareas));
     let user = this.servicioUsuario.getCurrentUser();
     if (user === null) {
       throw new Error("No hay usuario logueado");
@@ -143,12 +150,14 @@ export class TareasService {
       },
       body: JSON.stringify(Task.toServerObjectArray(this.tareas))
     }).then(res => {
-      res.json().then((data) => {
-        console.log("Respaldo creado", data);
-      })
+
+      if (res.status < 200 && res.status > 299) {
+        throw new Error("Error al crear el respaldo");
+      }
+
+      console.log("Respaldo creado");
     })
 
-    localStorage.setItem('lista-tareas', JSON.stringify(this.tareas));
   }
 
 }

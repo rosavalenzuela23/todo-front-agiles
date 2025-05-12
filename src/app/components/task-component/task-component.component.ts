@@ -23,12 +23,19 @@ export class TaskComponentComponent {
   @Output()
   cambiarEstadoEvento = new EventEmitter<Task>();
 
+  @Output()
+  eliminarTareaEvento = new EventEmitter<Task>();
+
   editarTarea() {
     this.editarTareaEvento.emit(this.task);
   }
 
   cambiarEstado() {
     this.cambiarEstadoEvento.emit(this.task);
+  }
+
+  eliminarTarea() {
+    this.eliminarTareaEvento.emit(this.task);
   }
 
   changeIcon(showDiv: boolean) {

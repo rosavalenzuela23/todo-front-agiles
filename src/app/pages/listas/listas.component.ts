@@ -66,6 +66,11 @@ export class ListasComponent {
     this.actualizarVista();
   }
 
+  async eliminarTarea(tarea: Task) {
+    this.tareaService.eliminarTarea(tarea.idPropio!);
+    await this.actualizarVista();
+  }
+
   async editarLista(evento: Event) {
     evento.preventDefault();
 

@@ -8,26 +8,6 @@
         <div class="col">
             <app-boton-agregar-tarea />
             <full-calendar style="width: 700px; height: 400px;" [options]="calendarOptions"></full-calendar>
-
-            @for (tarea of tareasAbiertas; track tarea.idPropio) {
-                <app-task-component 
-                [task]="tarea" 
-                (editarTareaEvento)="editarTarea(tarea)"
-                (cambiarEstadoEvento)="terminarTarea(tarea)" />
-            }
-
-            @if (tareasTerminadas.length != 0) {
-                <hr>
-            }
-
-            @for (tarea of tareasTerminadas; track tarea.idPropio) {
-                <app-task-component
-                [task]="tarea"
-                [terminada]="true"
-                (cambiarEstadoEvento)="abrirTarea(tarea)"
-                />
-            }
-
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ export class ListasService {
   constructor(
     private tareaService: TareasService
   ) {
-    const stringListas = localStorage.getItem('listas');
+    const stringListas = sessionStorage.getItem('listas');
 
     if (stringListas === null) {
       this.listas = ["sin categoria"]; //Aunque deberiamos de ir a la base de datos por las listas...
@@ -55,7 +55,7 @@ export class ListasService {
 
   async crearRespaldo() {
     await Promise.resolve();
-    localStorage.setItem("listas", JSON.stringify(this.listas));
+    sessionStorage.setItem("listas", JSON.stringify(this.listas));
   }
 
   async obtenerListas(): Promise<string[]> {

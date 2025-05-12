@@ -18,6 +18,8 @@ export type TaskServerObject = {
     endDate?: Date;
 }
 
+let tareasCreadas = 0;
+
 export default class Task {
     constructor(
         public titulo?: string,
@@ -46,8 +48,13 @@ export default class Task {
             task.description,
             task.endDate?.toString(),
             task.status === Status.PENDIENTE ? TaskEstado.ABIERTA : TaskEstado.TERMINADA,
-            task.categoryName
-        )
+            task.categoryName,
+            ++tareasCreadas
+        );
+    }
+
+    static fromServerArray(tasks: TaskServerObject[]): Task[] {
+        return tasks.map(task => Task.fromServerObject(task));
     }
 
     static toServerObjectArray(tasks: Task[]): TaskServerObject[] {
