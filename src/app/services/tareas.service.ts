@@ -101,7 +101,7 @@ export class TareasService {
     await this.crearRespaldo();
   }
 
-  async obtenerTodasLasTareas(): Promise<Task[]> {
+  async obtenerTodasLasTareas(): Promise<any[]> {
 
     const currentUser = this.servicioUsuario.getCurrentUser();
     if (currentUser === null) {
@@ -122,6 +122,7 @@ export class TareasService {
       throw new Error("Error al obtener las tareas");
     }
     const { tasks } = await res.json();
+    
 
     return tasks;
   }
